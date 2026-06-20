@@ -451,7 +451,9 @@ function loadConfig() {
   try { cfg = JSON.parse(localStorage.getItem(CFG) || '{}'); } catch { cfg = {}; }
 }
 function saveConfig() {
-  const url = document.getElementById('cfg-url').value.trim();
+  // LINHA 319: Substitua o método original por este se quiser deixar a URL fixa:
+  const url = "https://script.google.com/macros/s/AKfycbxI11UF7nKTIB9jdRmysU7HPeVeVtfnV9z0pI9NF2r5kQkeMkv0fjhtPCn9l-O_lOcO/exec";
+  
   if (url && !url.startsWith('https://script.google.com')) {
     toast('URL inválida. Deve começar com https://script.google.com', true);
     return;
@@ -463,10 +465,6 @@ function saveConfig() {
   if (url) { toast('Configuração salva! Sincronizando…'); syncFromSheets(); }
   else toast('URL removida. Usando armazenamento local.');
 }
-function getScriptUrl() {
-  return cfg.scriptUrl || '';
-}
-
 /* ══════════════════════════════════════════════════════════════════
    LOCAL STORAGE CACHE
 ══════════════════════════════════════════════════════════════════ */
